@@ -12,7 +12,11 @@ public enum ErrorCode {
     SUCCESS(1000, "Success", HttpStatus.OK),
     INVALID_KEY(1001,"Invalid Key",HttpStatus.BAD_REQUEST),
     USER_EXISTED(1002,"User Existed",HttpStatus.BAD_REQUEST),
-    UNAUTHENTICATED()
+    UNAUTHENTICATED(1003,"Unauthenticated",HttpStatus.UNAUTHORIZED),
+    UNAUTHORIZED(1004,"Unauthorized",HttpStatus.FORBIDDEN),
+    USER_NOT_EXISTED(1005,"User Not Existed",HttpStatus.NOT_FOUND),
+    INVALID_INPUT(1006,"Invalid Input",HttpStatus.BAD_REQUEST),
+    UNCATEGORIZED_EXCEPTION(9999,"Uncategorized Exception",HttpStatus.INTERNAL_SERVER_ERROR),
 
     int code;
     String message;
