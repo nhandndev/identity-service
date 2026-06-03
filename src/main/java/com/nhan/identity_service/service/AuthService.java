@@ -4,6 +4,8 @@ import com.nhan.identity_service.dto.request.RegisterRequest;
 import com.nhan.identity_service.dto.response.UserResponse;
 import com.nhan.identity_service.entity.Users;
 import com.nhan.identity_service.enums.Role;
+import com.nhan.identity_service.exception.AppException;
+import com.nhan.identity_service.exception.ErrorCode;
 import com.nhan.identity_service.mapper.UserMapper;
 import com.nhan.identity_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
     public UserResponse register(RegisterRequest registerRequest){
         Users user = userMapper.toUser(registerRequest);
+        if(userRepository.existsByuserName(user.getUserName())){
+            throw new AppException(ErrorCode.USER_EXISTED);
+        }
        user.setPassword(passwordEncoder.encode(user.getPassword()));
        user.setCreatedAt(LocalDateTime.now());
         Set<Role> roles = new HashSet<>();

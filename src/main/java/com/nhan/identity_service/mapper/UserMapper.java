@@ -6,7 +6,7 @@ import com.nhan.identity_service.dto.response.UserResponse;
 import com.nhan.identity_service.entity.Users;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
     UserResponse toUserResponse(Users user);
     Users toUser(RegisterRequest registerRequest);

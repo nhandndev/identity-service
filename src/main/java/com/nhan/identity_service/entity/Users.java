@@ -45,7 +45,7 @@ public class Users {
 
     LocalDateTime createdAt;
 
-    @ManyToMany
+//    @ManyToMany
     private Set<Role> roles;
 
 }
