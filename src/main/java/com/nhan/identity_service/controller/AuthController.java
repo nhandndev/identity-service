@@ -1,7 +1,9 @@
 package com.nhan.identity_service.controller;
 
+import com.nhan.identity_service.dto.request.AuthenticationRequest;
 import com.nhan.identity_service.dto.request.RegisterRequest;
 import com.nhan.identity_service.dto.response.ApiResponse;
+import com.nhan.identity_service.dto.response.AuthenticationResponse;
 import com.nhan.identity_service.dto.response.UserResponse;
 import com.nhan.identity_service.service.AuthService;
 import com.nhan.identity_service.service.UserService;
@@ -27,6 +29,15 @@ public class AuthController {
                 .message("register completed")
                 .result(authService.register(registerRequest))
                 .build();
+    }
+    @PostMapping("/login")
+    public ApiResponse<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest){
+        return ApiResponse.<AuthenticationResponse>builder()
+                .code(1000)
+                .message("login completed")
+                .result(authService.login(authenticationRequest))
+                .build();
+
     }
 
 }

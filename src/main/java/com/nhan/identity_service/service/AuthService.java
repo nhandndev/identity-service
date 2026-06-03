@@ -47,9 +47,19 @@ public class AuthService {
        user = userRepository.save(user);
        return userMapper.toUserResponse(user);
     }
-//    public AuthenticationResponse login(AuthenticationRequest authenticationRequest){
-//
-//    }
+    public AuthenticationResponse login(AuthenticationRequest authenticationRequest){
+        Users user = userRepository.findByuserName(authenticationRequest.getUserName())
+                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        boolean authenticated = passwordEncoder.matches(authenticationRequest.getPassword(),user.getPassword());
+        if(!authenticated){
+            throw new AppException(ErrorCode.UNAUTHENTICATED);
+        }
+        String token = generateToken(user);
+        return AuthenticationResponse.builder()
+                .token(token)
+                .authenticated(true)
+                .build();
+    }
     public String generateToken(Users user) {
         JWSHeader jwsHeader = new JWSHeader.Builder(JWSAlgorithm.HS256).type(JOSEObjectType.JWT).build();
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
