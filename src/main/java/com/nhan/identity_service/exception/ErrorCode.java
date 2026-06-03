@@ -16,6 +16,7 @@ public enum ErrorCode {
     UNAUTHORIZED(1004,"Unauthorized",HttpStatus.FORBIDDEN),
     USER_NOT_EXISTED(1005,"User Not Existed",HttpStatus.NOT_FOUND),
     INVALID_INPUT(1006,"Invalid Input",HttpStatus.BAD_REQUEST),
+    TOKEN_CANNOT_CREATE(1007,"Token Cannot Create",HttpStatus.BAD_REQUEST),
     UNCATEGORIZED_EXCEPTION(9999,"Uncategorized Exception",HttpStatus.INTERNAL_SERVER_ERROR);
 
     int code;
