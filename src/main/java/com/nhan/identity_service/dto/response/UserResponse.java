@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserResponse {
@@ -15,6 +17,6 @@ public class UserResponse {
     String lastName;
     String firstName;
     String email;
-    Role role;
+    Set<Role> roles;
     LocalDateTime createdAt;
 }

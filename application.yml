@@ -2,15 +2,15 @@ server:
   port: 8080
   servlet:
     context-path: /identity-service
+
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/identity_service_db
+    url: jdbc:postgresql://localhost:5433/identity_service_db?currentSchema=public
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto:
+      ddl-auto: create
     show-sql: true
-

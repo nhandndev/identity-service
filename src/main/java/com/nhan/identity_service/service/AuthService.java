@@ -31,8 +31,8 @@ public class AuthService {
         }
        user.setPassword(passwordEncoder.encode(user.getPassword()));
        user.setCreatedAt(LocalDateTime.now());
-        Set<Role> roles = new HashSet<>();
-        roles.add(Role.USER);
+       Set<Role> roles = new HashSet<>();
+       roles.add(Role.USER);
        user.setRoles(roles);
        user = userRepository.save(user);
        return userMapper.toUserResponse(user);
