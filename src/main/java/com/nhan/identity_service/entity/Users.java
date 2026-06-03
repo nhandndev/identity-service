@@ -1,19 +1,24 @@
 package com.nhan.identity_service.entity;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.nhan.identity_service.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Table(name = "User")
-public class User {
+@Getter
+@Setter
+@Table(name = "Users")
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @NotBlank(message = "Username is required")
     @Size(min = 4, max = 50, message = "Username must be between 4 and 50 characters")
@@ -38,5 +43,9 @@ public class User {
     @Column(name = "lastName",nullable = false)
     private String lastName;
 
-    private Set<String> roles;
+    LocalDateTime createdAt;
+
+    @ManyToMany
+    private Set<Role> roles;
+
 }
