@@ -1,4 +1,4 @@
-package nhan.identity_service;
+package com.nhan.identity_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
