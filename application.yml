@@ -5,7 +5,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/identity_service_db?currentSchema=public
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_NAME:identity_service_db}?currentSchema=public
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
@@ -15,6 +15,6 @@ spring:
       ddl-auto: update
     show-sql: true
 jwt:
-  signerKey: "fa59838d080c4a0c3cad5699b0e9c2f3e3077e2d9e6158b5dbd4ea3eb65cdd2a"
+  signerKey: ${JWT_KEY}
 app:
   init-data: true

@@ -1,5 +1,6 @@
 services:
-  postgres:
+  # 1. DATABASE
+  identity-db:
     image: postgres:17
     container_name: identity-db
     restart: always
@@ -11,6 +12,31 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    # ---- THÊM KHỐI KIỂM TRA SỨC KHOẺ NÀY ----
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d identity_service_db"]
+      interval: 5s     # Cứ 5 giây kiểm tra 1 lần
+      timeout: 5s      # Quá 5 giây coi như lỗi
+      retries: 5       # Thử lại 5 lần nếu lỗi
+
+  # 2. BACKEND APP
+  identity-backend:
+    build: .
+    container_name: identity-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=identity-db
+      - DB_PORT=5432
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASSWORD}
+      - jwt.signerKey=${JWT_KEY}
+      - server.servlet.context-path=/identity-service
+    # ---- CẬP NHẬT ĐOẠN DEPENDS_ON NÀY ----
+    depends_on:
+      identity-db:
+        condition: service_healthy # Chỉ chạy khi DB đã đi qua bước Healthcheck thành công
 
 volumes:
   postgres_data:
