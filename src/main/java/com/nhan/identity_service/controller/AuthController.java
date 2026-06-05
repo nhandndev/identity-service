@@ -1,6 +1,7 @@
 package com.nhan.identity_service.controller;
 
 import com.nhan.identity_service.dto.request.AuthenticationRequest;
+import com.nhan.identity_service.dto.request.LogoutRequest;
 import com.nhan.identity_service.dto.request.RegisterRequest;
 import com.nhan.identity_service.dto.response.ApiResponse;
 import com.nhan.identity_service.dto.response.AuthenticationResponse;
@@ -38,6 +39,15 @@ public class AuthController {
                 .result(authService.login(authenticationRequest))
                 .build();
 
+    }
+    @PostMapping("/logout")
+    public ApiResponse<Void> Logout(@RequestBody @Valid LogoutRequest logoutRequest){
+        authService.Logout(logoutRequest);
+        return ApiResponse.<Void>builder()
+                .code(1000)
+                .message("logout completed")
+                .result(null)
+                .build();
     }
 
 }
