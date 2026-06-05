@@ -125,9 +125,12 @@ public class AuthService {
 
     private String buildScope(Users user) {
         StringJoiner stringJoiner = new StringJoiner(" ");
-
-        if (user.getRoles() != null && !user.getRoles().isEmpty()) {
-            stringJoiner.add("ROLE_"+user.getRoles());
+        if (user.getRoles() == null && user.getRoles().isEmpty())  return "";
+        var roles = user.getRoles();
+        for(var role : roles){
+            String roleName = role.name();
+            String formatRoleName = roleName.startsWith("ROLE_")?roleName:"ROLE_"+roleName;
+            stringJoiner.add(formatRoleName);
         }
         return stringJoiner.toString();
     }
