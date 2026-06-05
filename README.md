@@ -2,6 +2,14 @@
 
 Đây là dự án backend xây dựng hệ thống quản lý danh tính (Identity Service) cung cấp các chức năng xác thực (Authentication) và phân quyền (Authorization).
 
+Dự án áp dụng mô hình phối hợp giữa Con người (Lập trình viên) và Trí tuệ nhân tạo (AI) nhằm tối ưu hóa hiệu suất và chất lượng mã nguồn theo quy trình khép kín:
+
+Giai đoạn Hoạch định (Planning): AI chịu trách nhiệm phác thảo và khởi tạo tài liệu kế hoạch (Plan file). Lập trình viên đóng vai trò cố vấn, hỗ trợ định hướng nghiệp vụ và trực tiếp phê duyệt (Review) kế hoạch cuối cùng.
+
+Giai đoạn Triển khai (Implementation): Lập trình viên trực tiếp hiện thực hóa mã nguồn (Implement code) cốt lõi của hệ thống dựa trên kế hoạch đã thống nhất để đảm bảo tính tối ưu và bảo mật.
+
+Giai đoạn Kiểm thử (Testing): AI tự động hóa việc viết các kịch bản kiểm thử đơn vị (Unit Test bằng JUnit/Mockito). Lập trình viên tiến hành đánh giá độ bao phủ (Code Coverage) và nghiệm thu chất lượng test case.
+
 ## 1. Nghiệm thu các yêu cầu của dự án
 
 Dựa trên mã nguồn hiện tại, dưới đây là kết quả kiểm tra các yêu cầu bạn đã đề ra:
