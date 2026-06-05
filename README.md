@@ -28,7 +28,7 @@ Dựa trên mã nguồn hiện tại, dưới đây là kết quả kiểm tra c
 | **Layered architecture** | ✅ | Cấu trúc thư mục chia layer rõ ràng: `controller`, `service`, `repository`, `entity`, `dto`, `mapper`, `exception`. |
 | **Git/GitHub** | ✅ | Thư mục dự án đã được khởi tạo Git (`.git` exists). |
 | **Tools (IntelliJ, DBeaver, Postman)** | ✅ | Đây là các công cụ môi trường bên ngoài, hoàn toàn phù hợp để dùng cho dự án này. |
-| **Swagger / OpenAPI** | ❌ | **Chưa có** thư viện `springdoc-openapi` trong `pom.xml`. Bạn cần bổ sung thêm nếu muốn generate document API tự động. |
+| **Swagger / OpenAPI** | ❌ | Chưa có thư viện `springdoc-openapi-starter-webmvc-ui` trong `pom.xml`. Bạn cần bổ sung thêm nếu muốn generate document API tự động. |
 
 ---
 

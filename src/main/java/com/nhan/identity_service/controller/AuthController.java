@@ -18,36 +18,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private AuthService authService;
+  @Autowired private UserService userService;
+  @Autowired private AuthService authService;
 
-    @PostMapping("/register")
-    public ApiResponse<UserResponse> register(@RequestBody @Valid RegisterRequest registerRequest){
-        return ApiResponse.<UserResponse>builder()
-                .code(1000)
-                .message("register completed")
-                .result(authService.register(registerRequest))
-                .build();
-    }
-    @PostMapping("/login")
-    public ApiResponse<AuthenticationResponse> login(@RequestBody AuthenticationRequest authenticationRequest){
-        return ApiResponse.<AuthenticationResponse>builder()
-                .code(1000)
-                .message("login completed")
-                .result(authService.login(authenticationRequest))
-                .build();
+  @PostMapping("/register")
+  public ApiResponse<UserResponse> register(@RequestBody @Valid RegisterRequest registerRequest) {
+    return ApiResponse.<UserResponse>builder()
+        .code(1000)
+        .message("register completed")
+        .result(authService.register(registerRequest))
+        .build();
+  }
 
-    }
-    @PostMapping("/logout")
-    public ApiResponse<Void> Logout(@RequestBody @Valid LogoutRequest logoutRequest){
-        authService.Logout(logoutRequest);
-        return ApiResponse.<Void>builder()
-                .code(1000)
-                .message("logout completed")
-                .result(null)
-                .build();
-    }
+  @PostMapping("/login")
+  public ApiResponse<AuthenticationResponse> login(
+      @RequestBody AuthenticationRequest authenticationRequest) {
+    return ApiResponse.<AuthenticationResponse>builder()
+        .code(1000)
+        .message("login completed")
+        .result(authService.login(authenticationRequest))
+        .build();
+  }
 
+  @PostMapping("/logout")
+  public ApiResponse<Void> Logout(@RequestBody @Valid LogoutRequest logoutRequest) {
+    authService.Logout(logoutRequest);
+    return ApiResponse.<Void>builder().code(1000).message("logout completed").result(null).build();
+  }
 }
