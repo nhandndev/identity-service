@@ -30,13 +30,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
-  @Autowired private UserRepository userRepository;
+  @Autowired private UserRepository userRepository; //autowire DI
   @Autowired private UserMapper userMapper;
   @Autowired @Lazy private PasswordEncoder passwordEncoder;
   @Autowired private InvalidatedTokenRepository invalidatedTokenRepository;
 
   @Value("${jwt.signerKey}")
-  private String SIGN_KEY;
+  private String SIGN_KEY ;
 
   public UserResponse register(RegisterRequest registerRequest) {
     Users user = userMapper.toUser(registerRequest);

@@ -19,7 +19,7 @@ import lombok.*;
 public class Users {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+  private Long id;//
 
   @NotBlank(message = "Username is required")
   @Size(min = 4, max = 50, message = "Username must be between 4 and 50 characters")
@@ -32,7 +32,7 @@ public class Users {
   private String email;
 
   @NotBlank(message = "Password is required")
-  @Size(min = 4, message = "Password must be more than 4 word")
+  @Size(min = 4, message = "Password must be more than 4 words")
   @Column(name = "password", nullable = false)
   private String password;
 

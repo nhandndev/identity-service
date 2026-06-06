@@ -2,6 +2,7 @@ package com.nhan.identity_service.exception;
 
 import com.nhan.identity_service.dto.response.ApiResponse;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -18,4 +19,19 @@ public class GlobalExceptionHandler {
             .build();
     return ResponseEntity.status(errorCode.getHttpStatus()).body(apiResponse);
   }
+  @ExceptionHandler(MethodArgumentNotValidException.class)
+  ResponseEntity<ApiResponse<Void>> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+    String errorCode = exception.getFieldError().getDefaultMessage();
+    ApiResponse apiResponse =
+            ApiResponse.builder()
+                    .code(400)
+                    .result(null)
+                    .message(errorCode)
+                    .build();
+    return ResponseEntity.status(400).body(apiResponse);
+  }
+//  unchecked , checked
+
+
+
 }
