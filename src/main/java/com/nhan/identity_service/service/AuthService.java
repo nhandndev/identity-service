@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
   @Autowired private UserRepository userRepository; //autowire DI
   @Autowired private UserMapper userMapper;
-  @Autowired @Lazy private PasswordEncoder passwordEncoder;
+  @Autowired  private PasswordEncoder passwordEncoder;
   @Autowired private InvalidatedTokenRepository invalidatedTokenRepository;
 
   @Value("${jwt.signerKey}")
