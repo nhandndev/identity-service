@@ -1,12 +1,17 @@
 package com.nhan.identity_service.controller;
 
+import com.nhan.identity_service.dto.request.UserUpdateRequest;
 import com.nhan.identity_service.dto.response.ApiResponse;
 import com.nhan.identity_service.dto.response.UserResponse;
 import com.nhan.identity_service.service.UserService;
 import java.util.List;
+
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,13 +30,21 @@ public class UserController {
   @PreAuthorize("hasRole('ADMIN')")
   @GetMapping("/users")
   ApiResponse<List<UserResponse>> ListUser() {
-    var authentication =
-        org.springframework.security.core.context.SecurityContextHolder.getContext()
-            .getAuthentication();
+//    var authentication =
+//        org.springframework.security.core.context.SecurityContextHolder.getContext()
+//            .getAuthentication();
     return ApiResponse.<List<UserResponse>>builder()
         .code(1000)
         .message("get All User Success")
         .result(userService.listUser())
         .build();
+  }
+  @PutMapping("/user/me")
+  ApiResponse<UserResponse> updateUser(@RequestBody @Valid UserUpdateRequest userUpdateRequest){
+    return ApiResponse.<UserResponse>builder()
+            .code(1000)
+            .message("Update User Success")
+            .result(userService.updateUser(userUpdateRequest))
+            .build();
   }
 }

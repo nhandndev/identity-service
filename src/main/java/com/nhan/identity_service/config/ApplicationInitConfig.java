@@ -41,3 +41,11 @@ public class ApplicationInitConfig {
     };
   }
 }
+//tinh huong data role truoc admin
+//config tao role truoc r moi admin
+//coi lai
+//DI
+//bdd
+//@SneakyThrows
+//profile
+
